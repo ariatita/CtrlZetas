@@ -7,6 +7,20 @@
 #include "repaso.h"
 
 enum Referencia dondeEstaElPunto(int xc, int yc, int rc, int xp, int yp) {
+    int dx = xp - xc;
+    int dy = yp - yc;
+    int r2 = rc * rc;
+    int distancia2 = dx * dx + dy * dy;
+    enum Referencia resultado;
+
+    if(distancia2 == r2) {
+        resultado = EN_CIRCUNFERENCIA;
+    } else if(distancia2 > r2) {
+        resultado = EXTERNO;
+    } else if(distancia2 < r2) {
+        resultado = INTERNO;
+    }
+    return resultado;
 }
 
 bool digitoEnNumero(long n, short d) {
