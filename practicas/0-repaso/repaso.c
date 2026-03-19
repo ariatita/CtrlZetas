@@ -44,8 +44,21 @@ bool digitoEnNumero(long n, short d) {
     return false;
 }
 
-
-
+//VERSION DE AGUS (UN SOLO RETURN):
+// bool digitoEnNumero(long n, short d) {
+//     int n1;
+//     bool resultado = false;
+//     if((n == 0) && (d == 0)) resultado = true;
+//     else if((n != 0)) {
+//         if(n < 0) n = n * -1;
+//         while(n != 0 && !resultado) {
+//             n1 = n % 10;
+//             if(n1 == d) resultado = true;
+//             n = n / 10;
+//         }
+//     }
+//     return resultado;
+// }
 
 enum Referencia dondeEstaElPuntoBis(struct Punto centroC, int rc, struct Punto p) {
 }
