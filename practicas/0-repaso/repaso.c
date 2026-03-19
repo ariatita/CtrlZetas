@@ -24,6 +24,24 @@ enum Referencia dondeEstaElPunto(int xc, int yc, int rc, int xp, int yp) {
 }
 
 bool digitoEnNumero(long n, short d) {
+    int n1;
+    if (n == 0) {
+        if (d == 0) {
+            return true;
+        }
+    return false; 
+    }
+    if (n < 0) {
+            n = n * -1; // o también n = -n;
+        }
+    while(n != 0){
+        n1 = n % 10;
+        if(n1 == d){
+            return true;
+        }
+        n = n / 10;
+    }
+    return false;
 }
 
 enum Referencia dondeEstaElPuntoBis(struct Punto centroC, int rc, struct Punto p) {
