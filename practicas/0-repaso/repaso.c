@@ -44,6 +44,9 @@ bool digitoEnNumero(long n, short d) {
     return false;
 }
 
+
+
+
 enum Referencia dondeEstaElPuntoBis(struct Punto centroC, int rc, struct Punto p) {
 }
 
