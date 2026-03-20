@@ -5,7 +5,7 @@
 #include "../repaso.h"
 #include "cadenas.h"
 
-int estanOrdenadosPartido(struct Jugador equipo[CANT_JUGADORES]);
+int estanOrdenadosPartido(struct Jugador equipo[]);
 int estanOrdenadosEdad(struct Jugador equipo[]);
 
 int main() {
@@ -32,20 +32,21 @@ int main() {
     assert(promedioDePartidosJugados(equipo, 35) == 725.0);
     return 0;
 }
-
 int estanOrdenadosPartido(struct Jugador equipo[]) {
-    for (int i = 0; i < CANT_JUGADORES - 1; i++) {
-        if(equipo[i].partidosJugados < equipo[i + 1].partidosJugados) {
-            return 0;
-        }
+    int i = 0;
+    int ordenado = 1;
+    while(ordenado == 1 && i < CANT_JUGADORES - 1) {
+        if(equipo[i].partidosJugados < equipo[i + 1].partidosJugados) ordenado = 0;
+        i++;
     }
-    return 1;
+    return ordenado;
 }
 int estanOrdenadosEdad(struct Jugador equipo[]) {
-    for (int i = 0; i < CANT_JUGADORES - 1; i++) {
-        if(equipo[i].edad > equipo[i + 1].edad) {
-            return 0;
-        }
+    int i = 0;
+    int ordenado = 1;
+    while(ordenado == 1 && i < CANT_JUGADORES - 1) {
+        if(equipo[i].edad > equipo[i + 1].edad) ordenado = 0;
+        i++;
     }
-    return 1;
+    return ordenado;
 }
