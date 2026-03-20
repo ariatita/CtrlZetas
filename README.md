@@ -1,5 +1,3 @@
-# template
-
 # 🧠 Trabajo Práctico - Programación en C
 
 Repositorio del trabajo práctico realizado para la materia **[Estructuras de Datos y Algoritmos]**.
