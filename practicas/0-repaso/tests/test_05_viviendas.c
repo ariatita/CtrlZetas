@@ -9,7 +9,6 @@
 
 int main() {
     imprimir_titulo("Tests de Ejercicio 5");
-
     int edificio[CANT_PISOS][CANT_DEPARTAMENTOS] = {
             {3, 5, 2, 1, 0},
             {2, 4, 3, 0, 4},
@@ -19,6 +18,11 @@ int main() {
             {2, 2, 0, 1, 3},
             {1, 0, 0, 2, 1},
             {0, 0, 1, 1, 1}};
-
+    Vivienda masHabitantes;
+    masHabitantes.piso = 1;
+    masHabitantes.depto = 'B';
+    Vivienda resultado = viviendaConMasHabitantes(edificio);
+    assert(resultado.depto == masHabitantes.depto);
+    assert(resultado.piso == masHabitantes.piso);
     return 0;
 }

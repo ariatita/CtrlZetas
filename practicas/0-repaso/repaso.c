@@ -125,6 +125,23 @@ float promedioDePartidosJugados(struct Jugador equipo[CANT_JUGADORES], int edad)
 }
 
 Vivienda viviendaConMasHabitantes(int edificio[CANT_PISOS][CANT_DEPARTAMENTOS]) {
+    Vivienda mashabitantes;
+    int maxHabitantes = 0;
+    int posPiso = 0;
+    int posDepto= 0;
+    for(int i = 0; i < CANT_PISOS; i++) {
+        for(int j = 0; j < CANT_DEPARTAMENTOS; j++) {
+            if(edificio[i][j] > maxHabitantes) {
+                maxHabitantes = edificio[i][j];
+                posPiso = i;
+                posDepto = j;
+            }
+        }
+    }
+    char departamento = 'A' + posDepto;
+    mashabitantes.piso = posPiso + 1;
+    mashabitantes.depto = departamento;
+    return mashabitantes;
 }
 
 // Función que devuelve el piso con más habitantes
