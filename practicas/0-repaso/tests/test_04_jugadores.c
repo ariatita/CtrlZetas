@@ -5,22 +5,47 @@
 #include "../repaso.h"
 #include "cadenas.h"
 
+int estanOrdenadosPartido(struct Jugador equipo[CANT_JUGADORES]);
+int estanOrdenadosEdad(struct Jugador equipo[]);
 
 int main() {
     imprimir_titulo("Tests de Ejercicio 4");
     struct Jugador equipo[CANT_JUGADORES] = {
-            {"Messi",       34, 800},
-            {"Ronaldo",     37, 900},
-            {"Neymar Jr.",  29, 500},
-            {"Mbappe",      22, 200},
-            {"Lewandowski", 33, 700},
-            {"Salah",       29, 400},
-            {"De Bruyne",   30, 600},
-            {"van Dijk",    30, 400},
-            {"Ramos",       35, 650},
-            {"Neuer",       35, 800},
-            {"Davies",      20, 100}
+        {"Messi",       34, 800},
+        {"Ronaldo",     37, 900},
+        {"Neymar Jr.",  29, 500},
+        {"Mbappe",      22, 200},
+        {"Lewandowski", 33, 700},
+        {"Salah",       29, 400},
+        {"De Bruyne",   30, 600},
+        {"van Dijk",    30, 400},
+        {"Ramos",       35, 650},
+        {"Neuer",       35, 800},
+        {"Davies",      20, 100}
     };
 
+    //TESTS:
+    jugadoresOrdenadosPorCantDePartidos(equipo);
+    assert(estanOrdenadosPartido(equipo));
+    jugadoresOrdenadosPorEdad(equipo);
+    assert(estanOrdenadosEdad(equipo));
+    assert(promedioDePartidosJugados(equipo, 35) == 725.0);
     return 0;
+}
+
+int estanOrdenadosPartido(struct Jugador equipo[]) {
+    for (int i = 0; i < CANT_JUGADORES - 1; i++) {
+        if(equipo[i].partidosJugados < equipo[i + 1].partidosJugados) {
+            return 0;
+        }
+    }
+    return 1;
+}
+int estanOrdenadosEdad(struct Jugador equipo[]) {
+    for (int i = 0; i < CANT_JUGADORES - 1; i++) {
+        if(equipo[i].edad > equipo[i + 1].edad) {
+            return 0;
+        }
+    }
+    return 1;
 }

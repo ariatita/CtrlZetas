@@ -79,14 +79,49 @@ enum Referencia dondeEstaElPuntoBis(struct Punto centroC, int rc, struct Punto p
 
 // Función para ordenar jugadores por cantidad de partidos jugados
 struct Jugador *jugadoresOrdenadosPorCantDePartidos(struct Jugador equipo[CANT_JUGADORES]) {
+    int max;
+    struct Jugador aux;
+    for(int i = 0; i < CANT_JUGADORES; i++) {
+        max = i;
+        for(int j = i + 1; j < CANT_JUGADORES; j++) {
+            if(equipo[max].partidosJugados < equipo[j].partidosJugados) max = j;
+        }
+        aux = equipo[i];
+        equipo[i] = equipo[max];
+        equipo[max] = aux;
+    }
+    return equipo;
 }
 
 // Función para ordenar jugadores por edad
 struct Jugador *jugadoresOrdenadosPorEdad(struct Jugador equipo[CANT_JUGADORES]) {
+    int min;
+    struct Jugador aux;
+    for(int i = 0; i < CANT_JUGADORES; i++) {
+        min = i;
+        for(int j = i + 1; j < CANT_JUGADORES; j++) {
+            if(equipo[min].edad > equipo[j].edad) min = j;
+        }
+        aux = equipo[i];
+        equipo[i] = equipo[min];
+        equipo[min] = aux;
+    }
+    return equipo;
 }
 
 // Función para calcular el promedio de partidos jugados dada una edad
 float promedioDePartidosJugados(struct Jugador equipo[CANT_JUGADORES], int edad) {
+    float total = 0;
+    int jugadores = 0;
+    float promedio = 0;
+    for(int i = 0; i < CANT_JUGADORES; i++) {
+        if(equipo[i].edad == edad) {
+            jugadores++;
+            total += equipo[i].partidosJugados;
+        }
+    }
+    promedio = total / jugadores;
+    return promedio;
 }
 
 Vivienda viviendaConMasHabitantes(int edificio[CANT_PISOS][CANT_DEPARTAMENTOS]) {
