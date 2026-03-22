@@ -146,22 +146,93 @@ Vivienda viviendaConMasHabitantes(int edificio[CANT_PISOS][CANT_DEPARTAMENTOS]) 
 
 // Función que devuelve el piso con más habitantes
 int pisoConMasHabitantes(int edificio[CANT_PISOS][CANT_DEPARTAMENTOS]) {
+    int pisoConMasPersonas = 0;
+    int max = 0;
+    int totalxpiso = 0;
+    for(int i = 0; i < CANT_PISOS; i++) {
+        for(int j = 0; j < CANT_DEPARTAMENTOS; j++) {
+            totalxpiso += edificio[i][j];
+        }
+        if(totalxpiso > max) {
+            max = totalxpiso;
+            pisoConMasPersonas = i + 1;
+        }
+        totalxpiso = 0;
+    }
+    return pisoConMasPersonas;
 }
 
 // Función que devuelve el número de departamentos vacíos
 int cantidadDeViviendasVacias(int edificio[CANT_PISOS][CANT_DEPARTAMENTOS]) {
+    int deptosVacios = 0;
+    for(int i = 0; i < CANT_PISOS; i++) {
+        for(int j = 0; j < CANT_DEPARTAMENTOS; j++) {
+            if(edificio[i][j] == 0) deptosVacios++;
+        }
+    }
+    return deptosVacios;
 }
 
 // Función que devuelve el promedio de habitantes por departamento
 float promedioHabitantesPorVivienda(int edificio[CANT_PISOS][CANT_DEPARTAMENTOS]) {
+    float totalHabitantes = 0;
+    float totalViviendas = CANT_PISOS * CANT_DEPARTAMENTOS;
+    for(int i = 0; i < CANT_PISOS; i++) {
+        for(int j = 0; j < CANT_DEPARTAMENTOS; j++) {
+            totalHabitantes += edificio[i][j];
+        }
+    }
+    return totalHabitantes / totalViviendas;
 }
 
 void cantidadDeViviendasVaciasPorPiso(int edificio[CANT_PISOS][CANT_DEPARTAMENTOS], int vaciasPorPiso[CANT_PISOS]) {
+    int viviendasVacias = 0;
+    for(int i = 0; i < CANT_PISOS; i++) {
+        for(int j = 0; j < CANT_DEPARTAMENTOS; j++) {
+            if(edificio[i][j] == 0) viviendasVacias++;
+        }
+        vaciasPorPiso[i] = viviendasVacias;
+        viviendasVacias = 0;
+    }
 }
 
-void viviendasVacias(int edificio[CANT_PISOS][CANT_DEPARTAMENTOS],
-                     Vivienda viviendasVacias[CANT_PISOS * CANT_DEPARTAMENTOS]) {
+void viviendasVacias(int edificio[CANT_PISOS][CANT_DEPARTAMENTOS], Vivienda viviendasVaciasTotales[CANT_PISOS * CANT_DEPARTAMENTOS]) {
+    int pos = 0;
+    for(int i = 0; i < CANT_PISOS; i++) {
+        for(int j = 0; j < CANT_DEPARTAMENTOS; j++) {
+            if(edificio[i][j] == 0) {
+                viviendasVaciasTotales[pos].piso = i + 1;
+                viviendasVaciasTotales[pos].depto = 'A' + j;
+                pos++;
+            }
+        }
+    }
 }
 
 void procesarArchivo(const char *nombreArchivo) {
+    FILE *file = fopen(nombreArchivo, "r");
+    if(file == NULL) {
+        printf("Error al abrir archivo\n");
+        return;
+    }
+    int cliente, anio, mes;
+    float minutos;
+    if(fscanf(file, "%d %d %d %f", &cliente, &anio, &mes, &minutos) != 4) {
+        fclose(file);
+        return;
+    }
+    while(!feof(file)) {
+        int cliente_actual = cliente;
+        printf("\nCliente %d\n", cliente_actual);
+        while(!feof(file) && cliente == cliente_actual) {
+            int anio_actual = anio;
+            int total_anio = 0;
+            while(!feof(file) && cliente == cliente_actual && anio == anio_actual) {
+                total_anio += minutos;
+                fscanf(file, "%d %d %d %f", &cliente, &anio, &mes, &minutos);
+            }
+            printf("  Año %d: %d minutos\n", anio_actual, total_anio);
+        }
+    }
+    fclose(file);
 }

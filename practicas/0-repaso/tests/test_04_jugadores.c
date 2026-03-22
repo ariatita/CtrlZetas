@@ -32,6 +32,8 @@ int main() {
     assert(promedioDePartidosJugados(equipo, 35) == 725.0);
     return 0;
 }
+
+
 int estanOrdenadosPartido(struct Jugador equipo[]) {
     int i = 0;
     int ordenado = 1;
@@ -41,6 +43,7 @@ int estanOrdenadosPartido(struct Jugador equipo[]) {
     }
     return ordenado;
 }
+
 int estanOrdenadosEdad(struct Jugador equipo[]) {
     int i = 0;
     int ordenado = 1;
