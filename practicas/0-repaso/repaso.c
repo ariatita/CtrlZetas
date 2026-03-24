@@ -144,6 +144,27 @@ Vivienda viviendaConMasHabitantes(int edificio[CANT_PISOS][CANT_DEPARTAMENTOS]) 
     return mashabitantes;
 }
 
+// ----->Ejemplo Juan Cruz.<-----
+// Vivienda viviendaConMasHabitantes(int edificio[CANT_PISOS][CANT_DEPARTAMENTOS]){
+//     Vivienda masHabitantes;
+//     int maxHabitantes = 0;
+//     int posicionPiso = 0;
+//     int posicionDepto = 0;
+//     for(int i = 0; i < CANT_PISOS; i++){
+//         for(int j = 0; j < CANT_DEPARTAMENTOS; j++){
+//             if(edificio[i][j] > maxHabitantes){
+//                 maxHabitantes = edificio[i][j];
+//                 posicionPiso = i;
+//                 posicionDepto = j;
+//             }
+//         }
+//     }
+//     char departamento = 'A' + posicionDepto;
+//     masHabitantes.piso = posicionPiso + 1;
+//     masHabitantes.depto = departamento;
+//     return masHabitantes;
+// }
+
 // Función que devuelve el piso con más habitantes
 int pisoConMasHabitantes(int edificio[CANT_PISOS][CANT_DEPARTAMENTOS]) {
     int pisoConMasPersonas = 0;
